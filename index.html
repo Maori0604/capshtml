@@ -2,131 +2,16 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>익산시 음식점 소개</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        header {
-            background-color: #f8f8f8;
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo img {
-            height: 100px;
-        }
-
-        nav {
-            background-color: #9EECFF;
-            color: white;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            padding: 0.5rem;
-            /*메뉴*/
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0.5rem 7rem;
-            /*메뉴글자 사이이*/
-        }
-
-        .carousel-container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            position: relative;
-            overflow: hidden;
-            padding: 0 2rem;
-        }
-
-        .carousel {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .restaurant {
-            min-width: 250px;
-            margin: 0 10px;
-            text-align: center;
-        }
-
-        .restaurant img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .carousel-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 1rem;
-            cursor: pointer;
-            z-index: 1;
-        }
-
-        .carousel-button.left {
-            left: 0;
-        }
-
-        .carousel-button.right {
-            right: 0;
-        }
-
-        @media (max-width: 768px) {
-            .restaurant {
-                min-width: 200px;
-            }
-
-            .restaurant img {
-                height: 150px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .carousel-container {
-                padding: 0 1rem;
-            }
-
-            .restaurant {
-                min-width: 150px;
-            }
-
-            .restaurant img {
-                height: 120px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
     <header>
         <div class="logo">
-            <img src="./wku.png" alt="로고">
+            <img src="./wku.png" alt="로고" />
         </div>
     </header>
     <nav>
@@ -140,50 +25,26 @@
         <button class="carousel-button left" onclick="prevSlide()">◀</button>
         <div class="carousel" id="carousel">
             <div class="restaurant">
-                <img src="https://via.placeholder.com/250x200" alt="음식점1">
+                <img src="https://via.placeholder.com/250x200" alt="음식점1" />
                 <p>음식점 1</p>
             </div>
             <div class="restaurant">
-                <img src="https://via.placeholder.com/250x200" alt="음식점2">
+                <img src="https://via.placeholder.com/250x200" alt="음식점2" />
                 <p>음식점 2</p>
             </div>
             <div class="restaurant">
-                <img src="https://via.placeholder.com/250x200" alt="음식점3">
+                <img src="https://via.placeholder.com/250x200" alt="음식점3" />
                 <p>음식점 3</p>
             </div>
             <div class="restaurant">
-                <img src="https://via.placeholder.com/250x200" alt="음식점4">
+                <img src="https://via.placeholder.com/250x200" alt="음식점4" />
                 <p>음식점 4</p>
             </div>
         </div>
         <button class="carousel-button right" onclick="nextSlide()">▶</button>
     </div>
 
-    <script>
-        let currentIndex = 0;
-        const itemWidth = 270; // 250px + 20px margin
-        const carousel = document.getElementById('carousel');
-        const totalItems = carousel.children.length;
-
-        function updateCarousel() {
-            const offset = currentIndex * itemWidth;
-            carousel.style.transform = `translateX(-${offset}px)`;
-        }
-
-        function nextSlide() {
-            if (currentIndex < totalItems - 1) {
-                currentIndex++;
-                updateCarousel();
-            }
-        }
-
-        function prevSlide() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
