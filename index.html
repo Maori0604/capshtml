@@ -14,35 +14,30 @@
             <img src="./wku.png" alt="로고" />
         </div>
     </header>
+
     <nav>
-        <a href="#">홈</a>
         <a href="#">음식점 목록</a>
-        <a href="#">추천 메뉴</a>
-        <a href="#">문의</a>
+        <a href="#">자주 묻는 질문</a>
+        <a href="#">소개</a>
+        <a href="#">이용안내</a>
     </nav>
 
-    <div class="carousel-container">
-        <button class="carousel-button left" onclick="prevSlide()">◀</button>
-        <div class="carousel" id="carousel">
-            <div class="restaurant">
-                <img src="https://via.placeholder.com/250x200" alt="음식점1" />
-                <p>음식점 1</p>
+    <div class="nofo-wrapper">
+        <button class="slider-button left" onclick="scrollSlider(-1)">&#10094;</button>
+
+        <div class="nofo-container">
+            <div class="nofo-header">
+                <h2>#신동</h2>
             </div>
-            <div class="restaurant">
-                <img src="https://via.placeholder.com/250x200" alt="음식점2" />
-                <p>음식점 2</p>
-            </div>
-            <div class="restaurant">
-                <img src="https://via.placeholder.com/250x200" alt="음식점3" />
-                <p>음식점 3</p>
-            </div>
-            <div class="restaurant">
-                <img src="https://via.placeholder.com/250x200" alt="음식점4" />
-                <p>음식점 4</p>
+            <hr class="nofo-divider">
+            <div class="slider" id="slider">
+                <!-- 외부 파일에서 카드들을 불러옵니다 -->
             </div>
         </div>
-        <button class="carousel-button right" onclick="nextSlide()">▶</button>
-    </div>zmfh
+
+        <button class="slider-button right" onclick="scrollSlider(1)">&#10095;</button>
+    </div>
+
     <script src="script.js"></script>
 </body>
 
