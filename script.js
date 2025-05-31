@@ -1,46 +1,58 @@
-// 슬라이더 좌우 이동
-function scrollSlider(direction) {
-    const slider = document.getElementById('slider');
+function scrollSlider(direction, sliderId) {
+    const slider = document.getElementById(sliderId);
     const scrollAmount = 250;
-    slider.scrollBy({
-        left: direction * scrollAmount,
-        behavior: 'smooth'
-    });
+
+    const currentScroll = Math.ceil(slider.scrollLeft);
+    const maxScroll = slider.scrollWidth - slider.clientWidth;
+
+    // 오른쪽 끝이면 처음으로 이동
+    if (direction > 0 && currentScroll >= maxScroll) {
+        slider.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+        slider.scrollBy({
+            left: direction * scrollAmount,
+            behavior: 'smooth'
+        });
+    }
 }
 
 // 자동 슬라이드
-let autoSlideInterval = setInterval(() => {
-    const slider = document.getElementById('slider');
-    const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+let autoSlideIntervals = {};
 
-    if (Math.ceil(slider.scrollLeft) >= maxScrollLeft) {
-        slider.scrollTo({ left: 0, behavior: 'smooth' });
-    } else {
-        scrollSlider(1);
-    }
-}, 3000);
+function startAutoSlide(sliderId) {
+    const slider = document.getElementById(sliderId);
 
-// 마우스 올리면 멈춤 / 벗어나면 재시작
-const sliderElement = document.getElementById('slider');
-sliderElement.addEventListener("mouseenter", () => clearInterval(autoSlideInterval));
-sliderElement.addEventListener("mouseleave", () => {
-    autoSlideInterval = setInterval(() => {
+    autoSlideIntervals[sliderId] = setInterval(() => {
         const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+
         if (Math.ceil(slider.scrollLeft) >= maxScrollLeft) {
             slider.scrollTo({ left: 0, behavior: 'smooth' });
         } else {
-            scrollSlider(1);
+            scrollSlider(1, sliderId);
         }
     }, 3000);
-});
+}
 
-// 외부 카드 목록 불러오기 (sindong.html)
 window.addEventListener('DOMContentLoaded', () => {
-    fetch('sindong.html')
-        .then(res => res.text())
-        .then(html => {
-            document.getElementById('slider').innerHTML = html;
-        })
-        .catch(err => console.error('카드 불러오기 실패:', err));
-});
+    const sliders = [
+        { id: 'slider-sindong', file: 'sindong.html' },
+        { id: 'slider-yeong', file: 'yeong.html' }
+    ];
 
+    sliders.forEach(({ id, file }) => {
+        const slider = document.getElementById(id);
+
+        if (slider) {
+            slider.addEventListener("mouseenter", () => clearInterval(autoSlideIntervals[id]));
+            slider.addEventListener("mouseleave", () => startAutoSlide(id));
+
+            fetch(file)
+                .then(res => res.text())
+                .then(html => {
+                    slider.innerHTML = html;
+                    startAutoSlide(id);
+                })
+                .catch(err => console.error(`${file} 불러오기 실패:`, err));
+        }
+    });
+});

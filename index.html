@@ -2,43 +2,60 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>익산시 음식점 소개</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>익산시 음식점</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <header>
-        <div class="logo">
-            <img src="./wku.png" alt="로고" />
-        </div>
-    </header>
+  <header>
+    <div class="logo">
+      <img src="./wku.png" alt="로고" />
+    </div>
+  </header>
 
-    <nav>
-        <a href="#">음식점 목록</a>
-        <a href="#">자주 묻는 질문</a>
-        <a href="#">소개</a>
-        <a href="#">이용안내</a>
-    </nav>
+  <nav>
+    <a href="#">소개</a>
+    <a href="#">이용 안내</a>
+    <a href="#">랜덤 추천</a>
+  </nav>
 
-    <div class="nofo-wrapper">
-        <button class="slider-button left" onclick="scrollSlider(-1)">&#10094;</button>
+  <!-- 신동 섹션 -->
+  <div class="nofo-wrapper">
+    <button class="slider-button left" onclick="scrollSlider(-1, 'slider-sindong')">&#10094;</button>
 
-        <div class="nofo-container">
-            <div class="nofo-header">
-                <h2>#신동</h2>
-            </div>
-            <hr class="nofo-divider">
-            <div class="slider" id="slider">
-                <!-- 외부 파일에서 카드들을 불러옵니다 -->
-            </div>
-        </div>
-
-        <button class="slider-button right" onclick="scrollSlider(1)">&#10095;</button>
+    <div class="nofo-container">
+      <div class="nofo-header">
+        <h2>#신동</h2>
+      </div>
+      <hr class="nofo-divider" />
+      <div class="slider" id="slider-sindong">
+        <!-- sindong.html 카드가 여기에 로드됨 -->
+      </div>
     </div>
 
-    <script src="script.js"></script>
+    <button class="slider-button right" onclick="scrollSlider(1, 'slider-sindong')">&#10095;</button>
+  </div>
+
+  <!-- 영등동 섹션 -->
+  <div class="nofo-wrapper">
+    <button class="slider-button left" onclick="scrollSlider(-1, 'slider-yeong')">&#10094;</button>
+
+    <div class="nofo-container">
+      <div class="nofo-header">
+        <h2>#영등동</h2>
+      </div>
+      <hr class="nofo-divider" />
+      <div class="slider" id="slider-yeong">
+        <!-- yeong.html 카드가 여기에 로드됨 -->
+      </div>
+    </div>
+
+    <button class="slider-button right" onclick="scrollSlider(1, 'slider-yeong')">&#10095;</button>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
